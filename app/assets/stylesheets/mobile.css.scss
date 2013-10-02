@@ -1,0 +1,92 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require jquery.ui.all
+ *= require event_calendar
+ *= require_self
+ *= require style-mobile
+ *= require articles
+ *= require calendar
+ *= require comments
+ *= require home
+ *= require users
+ *= require forums
+*/
+
+@import "bootstrap";
+
+/* fonts */
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400italic,700italic,400,700);
+@import url(http://fonts.googleapis.com/css?family=Yesteryear);
+@import url(http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic);
+
+/* general */
+
+.alert {
+  margin: 30px 30px 0 30px;
+}
+
+.post .alert {
+  margin: 0 0 12px 0;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+ 
+.clearfix {
+  /* display: inline-block; */
+}
+ 
+html[xmlns] .clearfix {
+  display: block;
+}
+ 
+* html .clearfix {
+  height: 1%;
+}
+
+.qrcode {
+  table {
+    border-width: 0;
+    border-style: none;
+    border-color: #0000ff;
+    border-collapse: collapse;
+  }
+  td {
+    border-width: 0;
+    border-style: none;
+    border-color: #0000ff;
+    border-collapse: collapse;
+    padding: 0;
+    margin: 0;
+    width: 10px;
+    height: 10px;
+  }
+  td.black { background-color: #000; }
+  td.white { background-color: #fff; }  
+}

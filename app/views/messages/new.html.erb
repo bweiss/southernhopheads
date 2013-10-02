@@ -1,0 +1,15 @@
+<div class="post">
+  <h2 class="clearfix title">Contact Us</h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <p>Just fill out the form below with your questions, comments or suggestions and we'll get back to you as soon as possible. Thanks!</p>
+    <%= simple_form_for @message, :url => contact_path do |f| %>
+      <%= f.error_notification %>
+      <%= display_base_errors @message %>
+      <%= f.input :name %>
+      <%= f.input :email %>
+      <%= f.text_area :content, :size => "40x20" %>
+      <%= f.button :submit, "Send", :class => "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

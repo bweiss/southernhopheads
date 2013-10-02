@@ -1,0 +1,44 @@
+<% provide(:title, @post.title) %>
+
+<div class="post">
+  <h2 class="clearfix title">
+    <%= @post.title %>
+    <div class="admin-controls pull-right">
+      <% if can? :update, @post %>
+        <%= link_to '<i class="icon-edit"></i>'.html_safe, edit_post_path(@post.id) %>
+      <% end %>
+      <% if can? :destroy, @post %>
+        <%= link_to '<i class="icon-trash"></i>'.html_safe, @post, :method => :delete, :data => { :confirm => "Are you sure you want to delete this post?" } %>
+      <% end %>
+    </div>
+  </h2>
+  <h5 class="clearfix meta"><span class="date"><%= gravatar_for(@post.user, :size => 26)%> <strong><%= link_to @post.user.name, @post.user %></strong> <small>on <%= @post.created_at.strftime("%B %d, %Y") %></small></span></h5>
+  <div class="entry">
+    <%= RedCloth.new(strip_tags(@post.content)).to_html.html_safe %>
+    <p class="links"><%= link_to "Back To Forum", @post.forum, :class => 'btn' %></p>
+  </div>
+</div>
+
+<div id="comments">
+  <div class="post post-alt">
+    <h2 class="clearfix title">Comments</h2>
+    <p class="clearfix meta"></p>
+    <div class="entry">
+      <% if @comments.size > 0 %>
+        <%= render @comments %>
+        <%= will_paginate @comments %>
+      <% else %>
+        <p>No comments yet.</p>
+      <% end %>
+      <h3>New Comment</h3>
+      <% if user_signed_in? and can? :create, Comment %>
+        <%= simple_form_for [@post, Comment.new] do |f| %>
+          <%= f.text_area :content, :as => :text %>
+          <%= f.button :submit, "Add comment", :class => 'btn-primary' %>
+        <% end %>
+      <% else %>
+        <p>Must be <%= link_to 'signed in', new_user_session_path %> to comment.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

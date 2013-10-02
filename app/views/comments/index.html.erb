@@ -1,0 +1,24 @@
+<% provide(:title, "Comments") %>
+
+<div class="post">
+  <h2 class="clearfix title">Comments</h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <div id="comments">
+      <% if @comments.size > 0 %>
+        <%= render @comments %>
+      <% else %>
+        <p>No comments yet.</p>
+      <% end %>
+    </div>
+    <h4>New Comment</h4>
+    <%= form_for [@commentable, Comment.new] do |f| %>
+      <div class="field">
+        <%= f.text_area :content, :rows => 5 %>
+      </div>
+      <div class="actions">
+        <%= submit_tag "Add Comment", :class => 'btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

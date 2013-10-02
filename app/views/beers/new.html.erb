@@ -1,0 +1,14 @@
+<% provide(:title, "New Beer") %>
+
+<div class="post">
+  <h2 class="clearfix title">New Beer</h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <%= simple_form_for [@brewery, @beer] do |f| %>
+      <%= f.error_notification %>
+      <%= display_base_errors @beer %>
+      <%= render 'fields', :f => f %>
+      <%= f.button :submit, "Submit", :class => 'btn-primary' %>
+    <% end %>
+  </div>
+</div>

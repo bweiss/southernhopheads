@@ -1,0 +1,9 @@
+<%= @comment.user.name %> posted the following comment on the <%= @comment.commentable_type.downcase %> titled "<%= strip_tags(@comment.commentable.title) %>":
+
+<%= strip_tags(@comment.content) %>
+
+--
+
+You have opted to receive emails from southernhopheads.com. If you no longer wish to receive these emails, please either login to your account and edit your preferences, or use the link below:
+
+<%= unsubscribe_url(@user.access_token) %>

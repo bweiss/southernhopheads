@@ -1,0 +1,12 @@
+<% provide(:title, "Articles") %>
+
+<div class="post articles-index">
+  <h2 class="clearfix title">Articles</h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <ul>
+      <%= render @articles %>
+    </ul>
+    <%= will_paginate %>
+  </div>
+</div>

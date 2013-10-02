@@ -1,0 +1,72 @@
+<% provide(:title, "User Profile") %>
+
+<%
+  show_email = false
+  if @user.email_visible and user_signed_in?
+    show_email = true
+  elsif user_signed_in?
+    if @user == current_user or current_user.has_role? :admin
+      show_email = true
+    else
+      show_email = false
+    end
+  end
+%>
+
+<div class="post">
+  <div id="user-profile">
+    <h2 class="clearfix title">User Profile</h2>
+    <p class="clearfix meta"></p>
+    <div class="entry">
+      <% if @user == current_user %>
+        <a href="http://gravatar.com/emails" target="_blank"><%= gravatar_for @user, :size => 100 %></a>
+      <% else %>
+        <%= gravatar_for @user, :size => 100 %>
+      <% end %>
+      <h3><%= @user.name %></h3>
+      <% if show_email %>
+        <h5>
+          <%= @user.email %>
+          <% if @user == current_user %>
+            <% if @user.email_visible %>
+              &nbsp;<i class="icon-eye-open" title="Your email is visible to other users."></i>
+            <% else %>
+              &nbsp;<i class="icon-eye-close" title="Your email is hidden from other users."></i>
+            <% end %>
+          <% end %>
+        </h5>
+      <% end %>
+      <p class="clearfix meta"></p>
+      <p>
+        <strong>Joined:</strong> <%= @user.created_at.strftime('%Y-%m-%d') %><br />
+        <% if current_user_or_admin?(@user) %>
+          <strong>Current sign in:</strong> <%= @user.current_sign_in_at %> (from <%= @user.current_sign_in_ip %>)<br />
+          <strong>Last sign in:</strong> <%= @user.last_sign_in_at %> (from <%= @user.last_sign_in_ip %>)<br />
+          <% if @user.locked_at %>
+            <strong>Locked:</strong> <%= @user.locked_at %><br />
+          <% end %>
+        <% end %>
+      </p>
+      <p><strong>Location:</strong> <%= h @user.location %></p>
+      <p>
+        <strong>What's Brewing:</strong>
+        <div class="well well-small">
+          <% if @user.whats_brewing %>
+            <%= RedCloth.new(strip_tags(@user.whats_brewing)).to_html.html_safe %>
+          <% end %>
+        </div>
+      </p>
+      <p>
+        <strong>Favorite Beers:</strong>
+        <div class="well well-small">
+          <% if @user.favorite_beers %>
+            <%= RedCloth.new(strip_tags(@user.favorite_beers)).to_html.html_safe %>
+          <% end %>
+        </div>
+      </p>
+      <% if @user == current_user %>
+        <p class="links"><%= link_to 'Edit Profile', profile_path, :class => 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

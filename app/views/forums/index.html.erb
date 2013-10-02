@@ -1,0 +1,31 @@
+<% provide(:title, "Forum Index") %>
+
+<div class="post">
+  <h2 class="clearfix title">Forum Index</h2>
+  <p class="clearfix meta"></p>
+  <div id="forums-index" class="entry">
+    <% if @forums.count > 0 %>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th class="forum-name">Topics</th>
+            <th class="forum-posts">Posts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% alt = false %>
+          <% @forums.each do |forum| %>
+            <%= alt == true ? '<tr class="alt">'.html_safe : '<tr>'.html_safe %>
+              <% alt = !alt %>
+              <td class="forum-name">
+                <%= link_to forum.name, forum %><br />
+                <span class="meta"><%= forum.description %></span>
+              </td>
+              <td class="forum-posts"><%= forum.posts.count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

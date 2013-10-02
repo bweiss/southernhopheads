@@ -1,0 +1,12 @@
+<%= @article.title %>
+
+<% if @article.event %>
+When: <%= @article.start_at.strftime("%A, %B %d at %I:%M%p") %> <%= "(noon)" if @article.start_at.strftime("%I:%M%p") == "12:00PM" %>
+Where: <%= strip_tags(@article.location) %>
+<% end %>
+
+<%= strip_tags(@article.content) %>
+
+--
+
+You have opted to receive emails from southernhopheads.com. If you no longer wish to receive these emails, please sign in to your account at http://southernhopheads.com and access Account->Preferences at the top of the page.

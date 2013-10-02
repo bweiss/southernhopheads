@@ -1,0 +1,11 @@
+<% author = User.find(post.user_id) %>
+
+<tr>
+  <td class="post-index-body-title">
+    <%= link_to post.title, post %>
+    <br />
+    <small><%= gravatar_for(author, :size => 16) %> <%= link_to author.name, author %> on <%= post.created_at %></small>
+  </td>
+  <td class="post-index-body-comment-count"><%= post.comments.count %></td>
+  <td class="post-index-body-updated">4 days ago by brian</td>
+</tr>

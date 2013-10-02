@@ -1,0 +1,18 @@
+<% provide(:title, "Preferences") %>
+
+<div class="post">
+  <h2 class="clearfix title">Preferences</h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <h4>Notifications</h4>
+    <%= simple_form_for(@user, :url => preferences_path, :html => { :method => :post, :class => 'form-vertical' }) do |f| %>
+      <%= f.error_notification %>
+      <%= display_base_errors @user %>
+      <div class="well">
+        <%= f.input :email_new_events, :label => false, :inline_label => 'Send me an email about events and other announcements.' %>
+        <%= f.input :email_new_comments, :label => false, :inline_label => 'Send me an email when someone comments on something I have previously commented on.' %>
+      </div>
+      <%= f.button :submit, 'Save', :class => 'btn-primary' %>
+    <% end %>
+  </div>
+</div>

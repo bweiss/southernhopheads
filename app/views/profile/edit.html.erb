@@ -1,0 +1,18 @@
+<% provide(:title, "Edit Profile") %>
+
+<div class="post">
+  <h2 class="clearfix title">Edit Profile</h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <%= simple_form_for(@user, :url => profile_path, :html => { :method => :post, :class => 'form-vertical' }) do |f| %>
+      <%= f.error_notification %>
+      <%= display_base_errors @user %>
+      <%= f.input :location, :autofocus => true %>
+      <%= f.input :whats_brewing %>
+      <%= f.input :favorite_beers %>
+      <%= f.input :email_visible, :label => false, :inline_label => 'Email visible to other users?' %>
+      <%= f.button :submit, 'Update', :class => 'btn-primary' %>
+    <% end %>
+    <%= link_to "Back", :back %>
+  </div>
+</div>

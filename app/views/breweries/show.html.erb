@@ -1,0 +1,27 @@
+<% provide(:title, @brewery.name) %>
+
+<div class="post">
+  <h2 class="clearfix title"><%= @brewery.name %></h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <p>
+      Description: <%= @brewery.description %><br />
+      Location: <%= @brewery.location %><br />
+      Website: <%= @brewery.website %><br />
+    </p>
+  </div>
+</div>
+
+<% if @brewery.beers.count > 0 %>
+  <div class="post post-alt">
+    <h2 class="clearfix title">Beer List</h2>
+    <p class="clearfix meta"></p>
+    <div class="entry">
+      <ul>
+        <% @brewery.beers.each do |beer| %>
+          <li><%= link_to beer.name, beer %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

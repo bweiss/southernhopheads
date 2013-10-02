@@ -1,0 +1,14 @@
+<% provide(:title, "New Article") %>
+
+<div class="post">
+  <h2 class="title">New Article</h2>
+  <div class="entry">
+    <%= render 'instructions' %>
+    <%= simple_form_for @article do |f| %>
+      <%= f.error_notification %>
+      <%= display_base_errors @article %>
+      <%= render 'fields', :f => f %>
+      <%= f.button :submit, "Create Article", :class => 'btn-primary' %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<% provide(:title, "Admin Dashboard") %>
+
+<div class="post">
+  <h2 class="clearfix title">Admin Dashboard</h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+
+    <h4>Statistics</h4>
+
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Resource</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Users</td>
+          <td><%= User.count %></td>
+        </tr>
+        <tr>
+          <td>Articles</td>
+          <td><%= Article.unscoped.count %></td>
+        </tr>
+        <tr>
+          <td>Comments</td>
+          <td><%= Comment.count %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Newest members</h4>
+
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Joined</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% User.order('created_at DESC').limit(3).each do |u| %>
+          <tr>
+            <td><%= link_to u.name, u %></td>
+            <td><%= u.email %></td>
+            <td><%= u.created_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h4>Latest comments</h4>
+
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Comment</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% Comment.order('created_at DESC').limit(4).each do |c| %>
+          <tr>
+            <td>
+              <%= gravatar_for c.user, :size => 30 %><br />
+              <%= link_to c.user.name, c.user %>
+            </td>
+            <td><%= RedCloth.new(strip_tags(c.content)).to_html.html_safe %></td>
+            <td><%= link_to c.commentable_type, c.commentable_type.constantize.unscoped.find(c.commentable_id), :class => "btn btn-mini" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

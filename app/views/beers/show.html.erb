@@ -1,0 +1,39 @@
+<% provide(:title, @beer.name) %>
+
+<div class="post">
+  <h2 class="clearfix title"><%= @beer.name %></h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <p>
+      Brewery: <%= link_to @beer.brewery.name, @beer.brewery %><br />
+      Description: <%= @beer.description %><br />
+      Style: <%= @beer.style %><br />
+      ABV: <%= @beer.abv %><br />
+      IBU: <%= @beer.ibu %><br />
+      SRM: <%= @beer.srm %><br />
+      <br />
+      Score: <%= @beer_reviews[:score] %><br />
+      Rating: <%= @beer_reviews[:rating] %><br />
+    </p>
+    <p>
+      <%= link_to "Review This Beer", new_beer_review_path(@beer), :class => 'btn' %>
+      <%= link_to "Back To Brewery", @beer.brewery, :class => 'btn' %>
+    </p>
+  </div>
+</div>
+
+<div class="post post-alt">
+  <h2 class="clearfix title">Reviews</h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <% if @beer.reviews.count > 0 %>
+      <ul>
+        <% @beer.reviews.each do |r| %>
+          <li>Score: <%= r.score %>, by <%= link_to r.user.name, r.user %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No reviews for this beer!</p>
+    <% end %>
+  </div>
+</div>

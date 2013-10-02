@@ -1,0 +1,38 @@
+.articles-index ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 30px 0;
+  border-bottom: 1px solid gray;
+}
+
+.articles-index li {
+  border-top: 1px solid gray;
+  padding: 10px 0;
+}
+
+.articles-index-title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.articles-index-title .label {
+  font-weight: normal;
+  font-size: 0.6em;
+  background-color: #BDBCBC;
+  color: white;
+}
+
+.articles-index-user {
+  font-weight: normal;
+  font-size: 1em;
+}
+
+.articles-index-date {
+  float: right;
+  font-weight: normal;
+  font-size: 1em;
+}
+
+.event-details {
+  padding: 0px 0px 10px 0px;
+}

@@ -1,0 +1,64 @@
+<% @latest_posts = Post.order('updated_at DESC').limit(5) %>
+<% @upcoming_events = Article.published.events.starts_after(Time.zone.now - 1.day).order("start_at ASC").limit(5) %>
+<% @quote = BEER_QUOTES[Random.rand(BEER_QUOTES.count)] %>
+
+<ul>
+  <%
+  #<li>
+  #  <h2>Search Here</h2>
+  #  <div id="search" >
+  #    <form method="get" action="#">
+  #      <div>
+  #        <input type="text" name="s" id="search-text" value="" />
+  #        <input type="submit" id="search-submit" value="" />
+  #      </div>
+  #    </form>
+  #  </div>
+  #  <div style="clear: both;">&nbsp;</div>
+  #</li>
+  %>
+  <li>
+    <p>
+      <strong>
+        "<%= @quote[:text] %>"<br />
+        <span class="pull-right">-- <%= @quote[:author] %></span>
+      </strong>
+    </p>
+  </li>
+  <li>
+    <p><%= image_tag('hops_trans.png', :class => 'center') %></p>
+  </li>
+  <% if @upcoming_events.count > 0 %>
+    <li>
+      <h2>Upcoming Events</h2>
+      <ul>
+        <% @upcoming_events.each do |e| %>
+          <li>
+            <div class="upcoming-event-date"><%= e.start_at.strftime('%-m/%-d') %></div>
+            <div class="upcoming-event-desc"><%= link_to e.title, e %></div>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+  <li>
+    <h2>Latest Forum Posts</h2>
+    <ul>
+      <% @latest_posts.each do |p| %>
+        <li><span class="pull-left"><%= link_to truncate(strip_tags(p.title), :length => 35, :omission => '... (more)'), p %></span><span class="pull-right"><small>by <%= link_to truncate(p.user.name, :length => 10), p.user %></small></span></li>
+      <% end %>
+    </ul>
+  </li>
+  <li>
+    <h2>Other Resources</h2>
+    <ul>
+      <li><a href="http://www.brewgeeks.com/try-ingredients-before-brewday.html" target="_blank">Try Ingredients Before Brewday</a></li>
+      <li><a href="http://www.brewersfriend.com/2012/11/07/yeast-pitch-rates-explained/" target="_blank">Yeast Pitch Rates Explained</a></li>
+    </ul>
+  </li>
+  <li>
+    <div id="badges">
+      <a href="http://www.homebrewersassociation.org/" target="_blank"><%= image_tag('aha_logo-small.png') %></a>
+    </div>
+  </li>
+</ul>

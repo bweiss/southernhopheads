@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3><%= @article.title %></h3>
+    <% if @article.event %>
+      <h4>When: <%= @article.start_at.strftime("%A, %B %d at %I:%M%p") %> <%= "(noon)" if @article.start_at.strftime("%I:%M%p") == "12:00PM" %></h4>
+      <h4>Where: <%= sanitize(@article.location) %></h4>
+    <% end %>
+    <%= sanitize(@article.content, :tags => ARTICLES_ALLOWED_TAGS, :attributes => ARTICLES_ALLOWED_ATTRIBUTES).gsub('&lt;!-- summary', '<!-- summary').html_safe %>
+    <br />
+    <br />
+    <%= link_to '<img src="http://southernhopheads.com/assets/email_logo.jpg" />'.html_safe, root_url %>
+    <br />
+    <br />
+    <hr />
+    <br />
+    <p>You have opted to receive emails from southernhopheads.com. If you no longer wish to receive these emails, please use the following <%= link_to "unsubscribe", unsubscribe_url(@user.access_token) %> link.</p>
+  </body>
+</html>

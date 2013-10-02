@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= full_title(yield(:title)) %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : 'North Carolina Homebrew Club' %>">
+    <meta name="keywords" content="beer, brewing, brew, homebrew, club, hops, hophead, hopheads, hop head, hop heads, craft, craftbrew, craft brew, craft beer">
+    <%= stylesheet_link_tag "mobile", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body class="<%= controller_name %> <%= action_name %>">
+    <div id="menu-wrapper">
+      <div id="menu">
+        <%= render 'layouts/navigation-mobile' %>
+      </div>
+    </div>
+    </div>
+    <div id="header-wrapper">
+      <div id="header">
+        <div id="logo">
+          <h1><%= link_to "Southern<span>HopHeads</span>".html_safe, root_path %></h1>
+        </div>
+      </div>
+    </div>
+    <div id="main" role="main">
+      <div id="wrapper">
+        <div id="page">
+          <div id="content">
+            <%= render 'layouts/messages' %>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <p>
+        &copy; 2013 SouthernHopHeads.com. | All rights reserved.<br />
+        <small>Design by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>.</small>
+      </p>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+  </body>
+</html>

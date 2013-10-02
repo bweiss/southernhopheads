@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p><%= link_to @comment.user.name, user_path(@comment.user_id) %> posted the following comment on the <%= @comment.commentable_type.downcase %> titled <%= link_to strip_tags(@comment.commentable.title), polymorphic_url(@comment.commentable) %>:</p>
+    <br />
+    <p><%= RedCloth.new(strip_tags(@comment.content)).to_html.html_safe %></p>
+    <br />
+    <br />
+    <hr />
+    <br />
+    <p>You have opted to receive emails from <%= link_to "southernhopheads.com", root_url %>. If you no longer wish to receive these emails, please use the following <%= link_to "unsubscribe", unsubscribe_url(@user.access_token) %> link.</p>
+  </body>
+</html>

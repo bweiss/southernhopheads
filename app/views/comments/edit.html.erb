@@ -1,0 +1,14 @@
+<% provide(:title, "Edit Comment") %>
+
+<div class="post">
+  <h2 class="clearfix title">Edit Comment</h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <%= simple_form_for [@commentable, @comment] do |f| %>
+      <%= f.error_notification %>
+      <%= display_base_errors @comment %>
+      <%= f.text_area :content %>
+      <%= f.button :submit, "Update Comment", :class => 'btn-primary' %>
+    <% end %>
+  </div>
+</div>

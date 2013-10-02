@@ -1,0 +1,14 @@
+<% provide(:title, "Reviews") %>
+
+<div class="post">
+  <h2 class="clearfix title">Reviews</h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <% if @reviews.count > 0 %>
+      <ul>
+        <%= render @reviews %>
+      </ul>
+      <%= will_paginate @reviews %>
+    <% end %>
+  </div>
+</div>

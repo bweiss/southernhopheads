@@ -1,0 +1,15 @@
+<% provide(:title, "Edit Article") %>
+
+<div class="post">
+  <h2 class="clearfix title">Edit Article</h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <%= render 'instructions' %>
+    <%= simple_form_for @article do |f| %>
+      <%= f.error_notification %>
+      <%= display_base_errors @article %>
+      <%= render 'fields', :f => f %>
+      <%= f.button :submit, "Update Article", :class => 'btn-primary' %>
+    <% end %>
+  </div>
+</div>
