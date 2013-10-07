@@ -12,4 +12,20 @@ namespace :data do
       beer.save!
     end
   end
+
+  desc "Import users with auto-confirm"
+  task :import_users => :environment do
+    file = File.open('/home/brian/downloads/users.txt')
+    file.each do |line|
+      name, email = line.split(',')
+      user = User.new(:name => name, :email => email)
+      user.password = user.password_confirmation = SecureRandom.urlsafe_base64(14)
+      user.confirmed_at = Time.zone.now
+      if user.save
+        puts "Registered user #{user.id}: :email => #{email}, :name => #{name}"
+      else
+        puts "Error registering user: :email => #{email}, :name => #{name}"
+      end
+    end
+  end
 end
