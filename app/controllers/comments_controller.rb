@@ -47,7 +47,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = @commentable.comments.find(params[:id])
+    @comment = Comment.find(params[:id])
+    @commentable = @comment.commentable
     authorize! :destroy, @comment, :message => 'Not authorized to destroy this comment.'
     if @comment.destroy
       flash[:notice] = "Comment has been deleted."
