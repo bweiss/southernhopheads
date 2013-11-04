@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
 
-  VALID_NAME_REGEX = /[a-z\d\s]+/i
+  VALID_NAME_REGEX = /\A[a-z\d\s\._]+\z/i
   validates :name, :presence => true,
                    :uniqueness => { :case_sensitive => false },
                    :format =>     { :with => VALID_NAME_REGEX },
