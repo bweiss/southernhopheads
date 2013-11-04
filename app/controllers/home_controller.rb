@@ -10,5 +10,11 @@ class HomeController < ApplicationController
   
   def admin
     authorize! :manage, :all
+    @user_count = User.count
+    @article_count = Article.published.count
+    @comment_count = Comment.count
+    @new_users = User.order('created_at DESC').limit(4)
+    @new_comments = Comment.order('created_at DESC').limit(4)
+    @unconfirmed_users = User.where(:confirmed_at => [nil, false])
   end
 end
