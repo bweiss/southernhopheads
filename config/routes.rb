@@ -7,8 +7,6 @@ Southernhopheads::Application.routes.draw do
   # static pages
   get  'about',    :to => 'home#about'
   get  'admin',    :to => 'home#admin'
-  get  'brewinfo', :to => 'home#brewinfo'
-  get  'terms',    :to => 'home#terms'
 
   # contact us page
   get  'contact',  :to => 'messages#new', :as => :contact
@@ -23,14 +21,13 @@ Southernhopheads::Application.routes.draw do
     get "signin", :to => "devise/sessions#new"
   end
   devise_for :users
-  resources :users
+  resources :users, :only => [:index, :show, :destroy]
+  match '/users/unsubscribe/:signature' => 'users#unsubscribe', as: 'unsubscribe'
   
   get  'preferences', :to => 'preferences#edit'
   post 'preferences', :to => 'preferences#update'  
   get  'profile',     :to => 'profile#edit'
   post 'profile',     :to => 'profile#update'
-
-  match '/users/unsubscribe/:signature' => 'users#unsubscribe', as: 'unsubscribe'
   
   # articles
   get 'queue', :to => 'articles#queue'
