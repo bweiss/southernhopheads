@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :destroy, :queue, :publish, :email ]
 
   def index
-    @articles = Article.published.order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
+    @articles = Article.published.order('updated_at DESC').paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
 
   def queue
     authorize! :queue, Article, :message => 'Not authorized to access article queue.'
-    @articles = Article.unpublished.order('created_at DESC')
+    @articles = Article.unpublished.order('updated_at DESC')
   end
 
   def publish
