@@ -420,7 +420,7 @@ textarea {
 
 #sidebar li ul {
 	margin: 0px 0px;
-	padding-bottom: 50px;
+	padding-bottom: 40px;
 }
 
 #sidebar li li {
@@ -458,17 +458,31 @@ textarea {
 }
 
 #badges {
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 
 #badges a {
   padding: 0;
+  margin: 0;
 }
 
 #badges img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+#socialmedia {
+  border-top: 1px solid #377900;
+  border-bottom: 1px solid #377900;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#socialmedia a {
+	padding: 0 2px 0 2px;
 }
 
 .upcoming-event-date {
