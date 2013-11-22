@@ -17,7 +17,7 @@ gem 'launchy', '>= 2.2.0', :group => :test
 gem 'capybara', '>= 2.0.3', :group => :test
 gem 'factory_girl_rails', '>= 4.2.0', :group => [:development, :test]
 gem 'bootstrap-sass', '2.3.2.2'
-gem 'devise', '3.1.1'
+gem 'devise', '>= 3.2.1'
 gem 'devise-encryptable', '0.1.1'
 gem 'cancan', '>= 1.6.9'
 gem 'rolify', '>= 3.2.0'
