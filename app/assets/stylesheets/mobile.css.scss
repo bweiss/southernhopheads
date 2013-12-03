@@ -22,14 +22,10 @@
 
 @import "bootstrap";
 
-/* fonts */
-
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400italic,700italic,400,700);
 @import url(http://fonts.googleapis.com/css?family=Yesteryear);
 @import url(http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic);
-
-/* general */
 
 .alert {
   margin: 30px 30px 0 30px;
@@ -68,25 +64,4 @@ html[xmlns] .clearfix {
  
 * html .clearfix {
   height: 1%;
-}
-
-.qrcode {
-  table {
-    border-width: 0;
-    border-style: none;
-    border-color: #0000ff;
-    border-collapse: collapse;
-  }
-  td {
-    border-width: 0;
-    border-style: none;
-    border-color: #0000ff;
-    border-collapse: collapse;
-    padding: 0;
-    margin: 0;
-    width: 10px;
-    height: 10px;
-  }
-  td.black { background-color: #000; }
-  td.white { background-color: #fff; }  
 }
