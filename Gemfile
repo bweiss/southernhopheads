@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.13'
-gem 'mysql2', '0.3.11'
+gem 'mysql2', '0.3.14'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -18,7 +18,7 @@ gem 'capybara', '>= 2.0.3', :group => :test
 gem 'factory_girl_rails', '>= 4.2.0', :group => [:development, :test]
 gem 'bootstrap-sass', '2.3.2.2'
 gem 'devise', '>= 3.2.1'
-gem 'devise-encryptable', '0.1.1'
+gem 'devise-encryptable', '0.1.2'
 gem 'cancan', '>= 1.6.9'
 gem 'rolify', '>= 3.2.0'
 gem 'simple_form', '>= 2.1.0'
