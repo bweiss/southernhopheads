@@ -1,0 +1,4 @@
+      <%= f.label 'Payment Date' %>
+      <%= f.datetime_picker :payment_date, :dateFormat => "yy-mm-dd" %><br />
+      <%= f.input :payment_type, :collection => [['single', 'Single ($15)'], ['group', 'Group ($20)']], :label_method => :last, :value_method => :first, :as => :radio_buttons, :item_wrapper_class => 'inline' %>
+      

@@ -26,16 +26,20 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
-      can :manage, :all
-    else
-      can :read, [User, Article, Comment, Post]
-      can :manage, User, :id => user.id
-      if user.confirmed_at.nil? == false
-        can :create, Comment
-        can [:edit, :update, :destroy], Comment, :user_id => user.id
-        can :create, Post
-        can [:edit, :update, :destroy], Post, :user_id => user.id
-      end
+      can :manage, [Article, Beer, Brewery, Comment, Forum, Post, Review, Role, User]
+    end
+
+    if user.has_role? :treasurer
+      can :manage, Payment
+    end
+
+    can :read, [User, Article, Comment, Post, Payment]
+    can [:show, :edit, :update], User, :id => user.id
+    if user.confirmed_at.nil? == false
+      can :create, Comment
+      can [:edit, :update, :destroy], Comment, :user_id => user.id
+      can :create, Post
+      can [:edit, :update, :destroy], Post, :user_id => user.id
     end
   end
 end

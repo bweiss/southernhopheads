@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926145854) do
+ActiveRecord::Schema.define(:version => 20131111192551) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -69,6 +69,16 @@ ActiveRecord::Schema.define(:version => 20130926145854) do
     t.string   "description"
     t.integer  "sort_value"
   end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "payment_type", :default => "single", :null => false
+    t.datetime "payment_date"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  add_index "payments", ["user_id"], :name => "index_payments_on_user_id", :unique => true
 
   create_table "posts", :force => true do |t|
     t.string   "title"

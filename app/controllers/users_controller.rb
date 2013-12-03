@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :only => [ :index, :update, :destroy ]
+  before_filter :authenticate_user!, :only => [ :index, :update, :destroy, :payment ]
 
   def index
     authorize! :index, User, :message => 'Not authorized to perform this action.'
@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize! :show, @user, :message => 'Not authorized to perform this action.'
+    @payment = @user.payment ? @user.payment : Payment.new
   end
   
   def update
@@ -28,8 +29,13 @@ class UsersController < ApplicationController
       @user.destroy
       redirect_to users_path, :notice => "User deleted."
     else
-      redirect_to users_path, :notice => "Can't delete yourself."
+      redirect_to users_path, :alert => "Can't delete yourself."
     end
+  end
+
+  def payment
+    @user = User.find(params[:id])
+    authorize! :manage, @user, :message => 'Not authorized to perform this action.'
   end
 
   def unsubscribe

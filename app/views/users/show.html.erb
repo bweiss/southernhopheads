@@ -23,7 +23,14 @@
       <% else %>
         <%= gravatar_for @user, :size => 100 %>
       <% end %>
-      <h3><%= @user.name %></h3>
+      <h3>
+        <%= @user.name %>
+        <% unless @payment.payment_date.nil? %>
+          <% if @payment.payment_date + 1.year > Time.zone.now %>
+            <%= "&nbsp;<span class=\"label label-important\">Active Member</span>".html_safe %>
+          <% end %>
+        <% end %>
+      </h3>
       <% if show_email %>
         <h5>
           <%= @user.email %>
@@ -39,14 +46,26 @@
       <p class="clearfix meta"></p>
       <p>
         <strong>Joined:</strong> <%= @user.created_at.strftime('%Y-%m-%d') %><br />
-        <% if current_user_or_admin?(@user) %>
-          <strong>Current sign in:</strong> <%= @user.current_sign_in_at %> (from <%= @user.current_sign_in_ip %>)<br />
-          <strong>Last sign in:</strong> <%= @user.last_sign_in_at %> (from <%= @user.last_sign_in_ip %>)<br />
-          <% if @user.locked_at %>
-            <strong>Locked:</strong> <%= @user.locked_at %><br />
+        <% if user_signed_in? %>
+          <% if @user == current_user or current_user.has_role? :admin %>
+            <strong>Current sign in:</strong> <%= @user.current_sign_in_at %> (from <%= @user.current_sign_in_ip %>)<br />
+            <strong>Last sign in:</strong> <%= @user.last_sign_in_at %> (from <%= @user.last_sign_in_ip %>)<br />
+            <% if @user.locked_at %>
+              <strong>Locked:</strong> <%= @user.locked_at %><br />
+            <% end %>
           <% end %>
         <% end %>
       </p>
+      <% if user_signed_in? %>
+        <% if @user == current_user or current_user.has_role? :admin %>
+          <% unless @payment.payment_date.nil? %>
+            <p>
+              <strong>Payment:</strong> <%= @payment.payment_date.strftime('%Y-%m-%d') %> (<%= @payment.payment_type.capitalize %>)<br />
+              <strong>Expires:</strong> <%= (@payment.payment_date + 1.year).strftime('%Y-%m-%d') %><br />
+            </p>
+          <% end %>
+        <% end %>
+      <% end %>
       <p><strong>Location:</strong> <%= h @user.location %></p>
       <p>
         <strong>What's Brewing:</strong>

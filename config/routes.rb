@@ -21,9 +21,12 @@ Southernhopheads::Application.routes.draw do
     get "signin", :to => "devise/sessions#new"
   end
   devise_for :users
-  resources :users, :only => [:index, :show, :update, :destroy]
-  match '/users/unsubscribe/:signature' => 'users#unsubscribe', as: 'unsubscribe'
-  
+  resources :users, :only => [:index, :show, :update, :destroy], :shallow => true do
+    resources :payments
+  end
+
+  match '/users/unsubscribe/:signature' => 'users#unsubscribe', :as => 'unsubscribe'
+
   get  'preferences', :to => 'preferences#edit'
   post 'preferences', :to => 'preferences#update'  
   get  'profile',     :to => 'profile#edit'

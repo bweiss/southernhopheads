@@ -1,0 +1,35 @@
+<% provide(:title, "Payments for #{@user.name}") %>
+
+<div class="post">
+  <div id="user-payment-index">
+    <h2 class="clearfix title">Payments for <%= @user.name %></h2>
+    <p class="clearfix meta"></p>
+    <div class="entry">
+      <% if @payment.nil? %>
+        <h5>No payments for this user.</h5>
+        <% if current_user.has_role? :treasurer %>
+          <p><%= link_to "Add Payment", new_user_payment_path(@user), :class => 'btn btn-small' %></p>
+        <% end %>
+      <% else %>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>Paid Date</th>
+              <th>Payment Type</th>
+              <th>Expires</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @payment.payment_date.strftime('%Y-%m-%d') %></td>
+              <td><%= @payment.payment_type %></td>
+              <td><%= (@payment.payment_date + 1.year).strftime('%Y-%m-%d') %></td>
+              <td><%= link_to "Edit", edit_payment_path(@payment.id), :class => 'btn btn-small' %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

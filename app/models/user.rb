@@ -51,6 +51,7 @@ class User < ActiveRecord::Base
                   :whats_brewing, :email_visible, :favorite_beers, :email_new_events,
                   :email_event_reminders, :email_new_comments
 
+  has_one :payment, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :articles, :dependent => :destroy
   has_many :posts, :dependent => :destroy

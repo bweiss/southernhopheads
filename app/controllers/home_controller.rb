@@ -9,7 +9,7 @@ class HomeController < ApplicationController
   end
   
   def admin
-    authorize! :manage, :all
+    authorize! :manage, User
     @user_count = User.count
     @article_count = Article.published.count
     @comment_count = Comment.count
