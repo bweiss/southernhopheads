@@ -8,7 +8,7 @@
       <% if @payment.nil? %>
         <h5>No payments for this user.</h5>
         <% if current_user.has_role? :treasurer %>
-          <p><%= link_to "Add Payment", new_user_payment_path(@user), :class => 'btn btn-small' %></p>
+          <p><%= link_to "Add Payment", new_user_payment_path(@user), :class => 'btn btn-mini' %></p>
         <% end %>
       <% else %>
         <table class="table table-condensed">

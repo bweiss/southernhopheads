@@ -19,7 +19,7 @@ class PaymentsController < ApplicationController
     @payment = @user.build_payment(params[:payment], :as => :treasurer)
     if @payment.save
       flash[:notice] = 'Payment created. Thank you.'
-      redirect_to @payment
+      redirect_to users_path
     else
       render :action => 'new'
     end
@@ -35,7 +35,7 @@ class PaymentsController < ApplicationController
     @payment = Payment.find(params[:id])
     if @payment.update_attributes(params[:payment], :as => :treasurer)
       flash[:notice] = 'Payment has been updated.'
-      redirect_to @payment
+      redirect_to users_path
     else
       render :action => 'edit'
     end

@@ -8,7 +8,7 @@
       <% if @payment.nil? %>
         <h5>No payments for this user.</h5>
         <% if current_user.has_role? :treasurer %>
-          <p><%= link_to "Add Payment", new_user_payment_path(@user), :class => 'btn btn-small' %></p>
+          <p><%= link_to "Add Payment", new_user_payment_path(@user), :class => 'btn btn-mini' %></p>
         <% end %>
       <% else %>
         <table class="table table-condensed">
@@ -25,7 +25,7 @@
               <td><%= @payment.payment_date.strftime('%Y-%m-%d') %></td>
               <td><%= @payment.payment_type %></td>
               <td><%= (@payment.payment_date + 1.year).strftime('%Y-%m-%d') %></td>
-              <td><%= link_to "Edit", edit_payment_path(@payment.id), :class => 'btn btn-small' %></td>
+              <td><%= link_to "Edit", edit_payment_path(@payment.id), :class => 'btn btn-mini' %></td>
             </tr>
           </tbody>
         </table>

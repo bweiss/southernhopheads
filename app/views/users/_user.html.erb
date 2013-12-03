@@ -1,15 +1,10 @@
-<div id="role-options-<%= user.id %>" class="modal" style="display: none;">
-  <%= simple_form_for user, :url => user_path(user), :html => {:method => :put, :class => 'form-horizontal' } do |f| %>
-    <div class="modal-header">
-      <a class="close" data-dismiss="modal">&#215;</a>
-      <h3>Change Role</h3>
-    </div>
-    <div class="modal-body">
-      <%= f.input :role_ids, :collection => Role.all, :as => :radio_buttons, :label_method => lambda {|t| t.name.titleize}, :label => false, :item_wrapper_class => 'inline', checked: user.role_ids.first %>
-    </div>
-    <div class="modal-footer">
-      <%= f.submit "Change Role", :class => "btn" %>
-      <a class="btn" data-dismiss="modal" href="#">Close</a>
-    </div>
+<td><%= link_to user.name, user %></td>
+<td><%= user.email %></td>
+<td><%= user.created_at.to_date %></td>
+<td><%= user.payment.nil? ? "n/a" : (user.payment.payment_date + 1.year).to_date %></td>
+<td>
+  <% if current_user.has_role? :treasurer %>
+    <%= link_to '<i class="icon-briefcase"></i>'.html_safe, user.payment.nil? ? new_user_payment_path(user) : edit_payment_path(user.payment) %>
   <% end %>
-</div>
+  <%= link_to '<i class="icon-trash"></i>'.html_safe, user_path(user), :data => { :confirm => "Are you sure you want to delete this user?" }, :method => :delete unless user == current_user %>
+</td>
