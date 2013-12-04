@@ -40,6 +40,11 @@ Southernhopheads::Application.routes.draw do
     resources :comments
   end
 
+  # events
+  resources :events, :shallow => true do
+    resources :comments
+  end
+
   # forums
   resources :forums, :shallow => true do
     resources :posts do

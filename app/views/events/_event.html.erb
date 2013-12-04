@@ -1,0 +1,6 @@
+<li>
+  <span class="events-index-title"><%= link_to event.title, event %></span>
+  <br />
+  <span class="events-index-user">posted by <%= link_to event.user.name, event.user %></span>
+  <span class="events-index-date"><%= event.created_at.strftime("%B %d, %Y") %></span>
+</li>

@@ -6,7 +6,7 @@ class CalendarController < ApplicationController
 
     @shown_month = Date.civil(@year, @month)
 
-    @event_strips = Article.published.events.event_strips_for_month(@shown_month)
+    @event_strips = Event.published.event_strips_for_month(@shown_month)
 
     # To restrict what events are included in the result you can pass additional find options like this:
     #

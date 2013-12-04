@@ -1,0 +1,14 @@
+<% provide(:title, "New Event") %>
+
+<div class="post">
+  <h2 class="title">New Event</h2>
+  <div class="entry">
+    <%= render 'instructions' %>
+    <%= simple_form_for @event do |f| %>
+      <%= f.error_notification %>
+      <%= display_base_errors @event %>
+      <%= render 'fields', :f => f %>
+      <%= f.button :submit, "Create Event", :class => 'btn-primary' %>
+    <% end %>
+  </div>
+</div>

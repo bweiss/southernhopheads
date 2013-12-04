@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
   has_one :payment, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :articles, :dependent => :destroy
+  has_many :events, :dependent => :destroy
   has_many :posts, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
 
