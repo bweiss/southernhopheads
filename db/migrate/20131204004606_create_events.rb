@@ -7,7 +7,9 @@ class CreateEvents < ActiveRecord::Migration
       t.datetime :start_at
       t.datetime :end_at
       t.string :location
-      t.boolean :featured
+      t.boolean :allow_comments, :default => true
+      t.boolean :featured, :default => false
+      t.boolean :published, :default => false
 
       t.timestamps
     end

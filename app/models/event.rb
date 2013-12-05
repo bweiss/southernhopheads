@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :content, :title, :allow_comments, :start_at, :end_at, :location, :event
+  attr_accessible :title, :content, :start_at, :end_at, :location, :allow_comments, :featured
 
   validates :title, :presence => true, :length => { :maximum => 100 }
   validates :content, :presence => true, :length => { :maximum => 3000 }
