@@ -1,6 +1,9 @@
-<%= @article.title %>
+<%= @event.title %>
 
-<%= strip_tags(@article.content) %>
+When: <%= @event.start_at.strftime("%A, %B %d at %I:%M%p") %> <%= "(noon)" if @event.start_at.strftime("%I:%M%p") == "12:00PM" %>
+Where: <%= strip_tags(@event.location) %>
+
+<%= strip_tags(@event.content) %>
 
 --
 

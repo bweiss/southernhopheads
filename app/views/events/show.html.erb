@@ -31,7 +31,7 @@
       <h5>Where: <%= sanitize(@event.location) %></h5>
     </div>
     <div class="entry">
-      <%= sanitize(@event.content, :tags => EVENTS_ALLOWED_TAGS, :attributes => EVENTS_ALLOWED_ATTRIBUTES).gsub('&lt;!-- summary', '<!-- summary').html_safe %>
+      <%= sanitize(@event.content, :tags => ALLOWED_TAGS, :attributes => ALLOWED_ATTRIBUTES).gsub('&lt;!-- summary', '<!-- summary').html_safe %>
     </div>
   </div>
 </div>

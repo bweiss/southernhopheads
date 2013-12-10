@@ -17,7 +17,7 @@
 #
 
 class Article < ActiveRecord::Base
-  attr_accessible :content, :title, :allow_comments, :start_at, :end_at, :location, :event
+  attr_accessible :content, :title, :allow_comments, :start_at, :end_at, :location, :event, :featured
 
   validates :title, :presence => true, :length => { :maximum => 100 }
   validates :content, :presence => true, :length => { :maximum => 3000 }
@@ -28,9 +28,11 @@ class Article < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy
  
   scope :published, where(:published => true)
-  scope :unpublished, where(:published => false)
+  scope :notpublished, where(:published => false)
   scope :events, where(:event => true)
   scope :nonevents, where(:event => false)
+  scope :featured, where(:featured => true)
+  scope :notfeatured, where(:featured => false)
 
   def self.created_before(time)
     where("created_at < ?", time)

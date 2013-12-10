@@ -9,6 +9,12 @@ class UserMailer < ActionMailer::Base
     mail(:to => "#{@user.name} <#{@user.email}>", :subject => @article.title)
   end
 
+  def email_event(user, event)
+    @user = user
+    @event = event
+    mail(:to => "#{@user.name} <#{@user.email}>", :subject => @event.title)
+  end
+
   def email_comment(user, comment)
     @user = user
     @comment = comment

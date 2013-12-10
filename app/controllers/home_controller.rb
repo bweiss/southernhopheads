@@ -2,7 +2,6 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [ :admin ]
 
   def index
-    @articles = Article.published.order("updated_at DESC").limit(6)
     @articles_and_events = find_featured_articles_and_events(:order => "updated_at DESC", :limit => 6)
   end
 
@@ -13,6 +12,7 @@ class HomeController < ApplicationController
     authorize! :manage, User
     @user_count = User.count
     @article_count = Article.published.count
+    @event_count = Event.published.count
     @comment_count = Comment.count
     @new_users = User.order('created_at DESC').limit(4)
     @new_comments = Comment.order('created_at DESC').limit(4)
@@ -27,7 +27,7 @@ class HomeController < ApplicationController
     #
     def find_featured_articles_and_events(options = { :order => nil, :limit => nil })
       results = Array.new
-      cols = [:id, :title, :content, :user_id, :start_at, :end_at, :location, :allow_comments, :featured, :published, :created_at, :updated_at]
+      cols = [:id, :title, :content, :user_id, :start_at, :end_at, :location, :allow_comments, :featured, :published, :created_at, :updated_at, :type]
 
       query  = "(SELECT #{cols.join(', ')}, 'article' AS type"
       query << " FROM articles WHERE published = 1 AND featured = 1)"

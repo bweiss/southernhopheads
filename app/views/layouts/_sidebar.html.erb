@@ -1,5 +1,5 @@
 <% @latest_posts = Post.order('updated_at DESC').limit(5) %>
-<% @upcoming_events = Article.published.events.starts_after(Time.zone.now - 1.day).order("start_at ASC").limit(5) %>
+<% @upcoming_events = Event.published.starts_after(Time.zone.now - 1.day).order("start_at ASC").limit(5) %>
 <% @quote = BEER_QUOTES[Random.rand(BEER_QUOTES.count)] %>
 
 <ul>

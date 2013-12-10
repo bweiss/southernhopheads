@@ -29,8 +29,8 @@ namespace :data do
     end
   end
 
-  desc "Migrate articles with event flag to new event resource"
-  task :migrate_articles => :environment do
+  desc "Move articles with event flag to new event resource"
+  task :move_articles => :environment do
     Article.events.each do |article|
       event = Event.new
       event.title = article.title
@@ -63,6 +63,8 @@ namespace :data do
       else
         puts "Event not saved (article #{article.id})"
       end
+      puts "Next article..."
     end
+    puts "Finished"
   end
 end
