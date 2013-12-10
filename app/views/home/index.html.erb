@@ -16,7 +16,7 @@
   <% @articles_and_events.each do |ae| %>
     <%= postalt == true ? '<div class="post post-alt">'.html_safe : '<div class="post">'.html_safe %>
       <% postalt = !postalt %>
-      <h2 class="clearfix title"><%= link_to sanitize(ae[:title]), ae %></h2>
+      <h2 class="clearfix title"><%= link_to sanitize(ae[:title]), "#{ae[:type]}s/#{ae[:id]}" %></h2>
       <p class="clearfix meta"><span class="date"><%= ae[:created_at].strftime("%B %d, %Y") %></span><span class="posted">Posted by <%= link_to User.find(ae[:user_id]).name, user_path(ae[:user_id]) %></span></p>
       <% if ae[:type] == 'event' %>
         <div class="event-details">
@@ -35,7 +35,8 @@
             end
           %>
         </p>
-        <p class="links"><%= link_to "Read More", ae, :class => 'btn' %><span class="comment-count"><%= link_to("Comments (#{ae[:comments].count})", entry) if ae[:comments].count > 0 %></span></p>
+        <% comment_count = Comment.find_all_by_commentable_id(ae[:id]).count %>
+        <p class="links"><%= link_to "Read More", "#{ae[:type]}s/#{ae[:id]}", :class => 'btn' %><span class="comment-count"><%= link_to("Comments (#{comment_count})", "#{ae[:type]}s/#{ae[:id]}") if comment_count > 0 %></span></p>
       </div>
     </div>
   <% end %>

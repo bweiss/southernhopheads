@@ -27,18 +27,18 @@ class HomeController < ApplicationController
     #
     def find_featured_articles_and_events(options = { :order => nil, :limit => nil })
       results = Array.new
-      cols = [:id, :title, :content, :user_id, :start_at, :end_at, :location, :allow_comments, :featured, :published, :created_at, :updated_at, :type]
+      cols = [:id, :title, :content, :user_id, :start_at, :end_at, :location, :allow_comments, :featured, :published, :created_at, :updated_at]
 
       query  = "(SELECT #{cols.join(', ')}, 'article' AS type"
       query << " FROM articles WHERE published = 1 AND featured = 1)"
       query << " UNION"
       query << " (SELECT #{cols.join(', ')}, 'event' AS type"
       query << " FROM events WHERE published = 1 AND featured = 1)"
-      query << " ORDER BY #{order}" unless options[:order].nil?
-      query << " LIMIT #{limit}" unless options[:limit].nil?
+      query << " ORDER BY #{options[:order]}" unless options[:order].nil?
+      query << " LIMIT #{options[:limit]}" unless options[:limit].nil?
 
       rows = ActiveRecord::Base.connection.execute(query)
-
+      cols.push(:type)
       rows.each do |row|
         results.push(Hash[*cols.zip(row).flatten])
       end
