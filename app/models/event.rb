@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id             :integer          not null, primary key
+#  title          :string(255)
+#  content        :text
+#  user_id        :integer
+#  start_at       :datetime
+#  end_at         :datetime
+#  location       :string(255)
+#  allow_comments :boolean          default(TRUE)
+#  featured       :boolean          default(FALSE)
+#  published      :boolean          default(FALSE)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 class Event < ActiveRecord::Base
   attr_accessible :title, :content, :start_at, :end_at, :location, :allow_comments, :featured
 
