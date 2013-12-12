@@ -12,19 +12,13 @@
       <% postalt = !postalt %>
       <h2 class="clearfix title"><%= link_to sanitize(article.title), article %></h2>
       <p class="clearfix meta"><span class="date"><%= article.created_at.strftime("%B %d, %Y") %></span><span class="posted">Posted by <%= link_to User.find(article.user_id).name, user_path(article.user_id) %></span></p>
-      <% if article.event %>
-        <div class="event-details">
-          <h5>When: <%= article.start_at.strftime("%A, %B %d at %I:%M%p") %> <%= "(noon)" if article.start_at.strftime("%I:%M%p") == "12:00PM" %></h5>
-          <h5>Where: <%= sanitize(article.location) %></h5>
-        </div>
-      <% end %>
       <div class="entry">
         <%=
           # Show only the summary if summary comment tags are found.
           if /<!-- summary -->(.+)<!-- summary_end -->/m =~ article.content then
-            sanitize($1, :tags => ARTICLES_ALLOWED_TAGS, :attributes => ARTICLES_ALLOWED_ATTRIBUTES).html_safe
+            sanitize($1, :tags => ALLOWED_TAGS, :attributes => ALLOWED_ATTRIBUTES).html_safe
           else
-            sanitize(article.content, :tags => ARTICLES_ALLOWED_TAGS, :attributes => ARTICLES_ALLOWED_ATTRIBUTES).html_safe
+            sanitize(article.content, :tags => ALLOWED_TAGS, :attributes => ALLOWED_ATTRIBUTES).html_safe
           end
         %>
         <p class="links"><%= link_to "Read More", article, :class => 'btn' %><span class="comment-count"><%= link_to("Comments (#{article.comments.count})", article) if article.comments.count > 0 %></span></p>

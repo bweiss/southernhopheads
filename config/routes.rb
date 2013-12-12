@@ -33,7 +33,7 @@ Southernhopheads::Application.routes.draw do
   post 'profile',     :to => 'profile#update'
   
   # articles
-  get 'queue', :to => 'articles#queue'
+  get '/articles/queue', :to => 'articles#queue', :as => :article_queue
   match '/articles/:id/publish' => 'articles#publish', :as => :publish_article
   match '/articles/:id/email' => 'articles#email', :as => :email_article
   resources :articles, :shallow => true do
@@ -41,6 +41,9 @@ Southernhopheads::Application.routes.draw do
   end
 
   # events
+  get '/events/queue', :to => 'events#queue', :as => :event_queue
+  match '/events/:id/publish' => 'events#publish', :as => :publish_event
+  match '/events/:id/email' => 'events#email', :as => :email_event
   resources :events, :shallow => true do
     resources :comments
   end

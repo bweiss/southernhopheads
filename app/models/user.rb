@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :location,
                   :whats_brewing, :email_visible, :favorite_beers, :email_new_events,
-                  :email_event_reminders, :email_new_comments
+                  :email_event_reminders, :email_about_articles, :email_about_events, :email_new_comments
 
   has_one :payment, :dependent => :destroy
   has_many :comments, :dependent => :destroy
@@ -74,6 +74,10 @@ class User < ActiveRecord::Base
   validates :whats_brewing,  :length => { :maximum => 800 }
   validates :favorite_beers, :length => { :maximum => 800 }
 
+  scope :wants_emails_about_articles, where(:email_about_articles => true)
+  scope :wants_emails_about_events, where(:email_about_events => true)
+  scope :wants_emails_about_new_comments, where(:email_new_comments => true)
+
   # Access token for a user
   def access_token
     User.create_access_token(self)
@@ -97,22 +101,12 @@ class User < ActiveRecord::Base
     verifier.generate(user.id)
   end
 
-  def self.find_users_to_email_new_events
-    where('email_new_events = 1')
-  end
-
-  def self.find_users_to_email_event_reminders
-    where('email_event_reminders = 1')
-  end
-
-  def self.find_users_to_email_new_comments
-    where('email_new_comments = 1')
-  end
-
   private
 
     def default_values
       self.email_visible ||= false
+      self.email_about_articles ||= true
+      self.email_about_events ||= true
       self.email_new_events ||= true
       self.email_event_reminders ||= true
       self.email_new_comments ||= true

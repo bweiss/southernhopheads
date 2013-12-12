@@ -64,4 +64,32 @@ class EventsController < ApplicationController
     authorize! :queue, Event, :message => 'Not authorized to access event queue.'
     @events = Event.not_published.order('updated_at DESC')
   end
+
+  def publish
+    @event = Event.find(params[:id])
+    authorize! :publish, @event, :message => 'Not authorized to publish this event.'
+    @event.published = true
+    if @event.save
+      flash[:notice] = 'Event has been published.'
+    else
+      flash[:error] = 'There was an error publishing this event.'
+    end
+    redirect_to event_queue_path
+  end
+
+  def email
+    @event = Event.find(params[:id])
+    authorize! :email, @event, :message => 'Not authorized to email this event.'
+    @recipients = User.wants_emails_about_events
+    if @event.valid? and !@recipients.empty?
+      @recipients.each do |u|
+        UserMailer.email_event(u, @event).deliver
+      end
+      flash[:notice] = 'Your message has been sent! Thank you!'
+      redirect_to @event
+    else
+      flash[:error] = 'Error. Email not sent.'
+      redirect_to @event
+    end
+  end
 end
