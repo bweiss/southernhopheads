@@ -12,12 +12,10 @@
       <% postalt = !postalt %>
       <h2 class="clearfix title"><%= link_to sanitize(event.title), event %></h2>
       <p class="clearfix meta"><span class="date"><%= event.created_at.strftime("%B %d, %Y") %></span><span class="posted">Posted by <%= link_to User.find(event.user_id).name, user_path(event.user_id) %></span></p>
-      <% if event.event %>
-        <div class="event-details">
-          <h5>When: <%= event.start_at.strftime("%A, %B %d at %I:%M%p") %> <%= "(noon)" if event.start_at.strftime("%I:%M%p") == "12:00PM" %></h5>
-          <h5>Where: <%= sanitize(event.location) %></h5>
-        </div>
-      <% end %>
+      <div class="event-details">
+        <h5>When: <%= event.start_at.strftime("%A, %B %d at %I:%M%p") %> <%= "(noon)" if event.start_at.strftime("%I:%M%p") == "12:00PM" %></h5>
+        <h5>Where: <%= sanitize(event.location) %></h5>
+      </div>
       <div class="entry">
         <%=
           # Show only the summary if summary comment tags are found.
