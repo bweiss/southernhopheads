@@ -29,11 +29,11 @@ class Article < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy
  
   scope :published, where(:published => true)
-  scope :notpublished, where(:published => false)
+  scope :not_published, where(:published => false)
   scope :events, where(:event => true)
   scope :nonevents, where(:event => false)
   scope :featured, where(:featured => true)
-  scope :notfeatured, where(:featured => false)
+  scope :not_featured, where(:featured => false)
 
   def self.created_before(time)
     where("created_at < ?", time)

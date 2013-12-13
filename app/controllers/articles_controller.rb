@@ -63,7 +63,7 @@ class ArticlesController < ApplicationController
 
   def queue
     authorize! :queue, Article, :message => 'Not authorized to access article queue.'
-    @articles = Article.unpublished.order('updated_at DESC')
+    @articles = Article.not_published.order('updated_at DESC')
   end
 
   def publish
