@@ -41,8 +41,8 @@ class UsersController < ApplicationController
   def unsubscribe
     if @user = User.read_access_token(params[:signature])
       sign_in @user
-      @user.update_attribute :email_new_events, false
-      @user.update_attribute :email_event_reminders, false
+      @user.update_attribute :email_about_articles, false
+      @user.update_attribute :email_about_events, false
       @user.update_attribute :email_new_comments, false
       redirect_to preferences_path, :notice => "You have been unsubscribed from all emails."
     else
