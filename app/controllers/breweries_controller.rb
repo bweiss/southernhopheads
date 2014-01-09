@@ -2,7 +2,11 @@ class BreweriesController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :destroy ]
 
   def index
-    @breweries = Brewery.order('name ASC').paginate(:page => params[:page], :per_page => 20)
+    @search = Search.new(Brewery, params[:search])
+    @search.order = 'name ASC'
+    @breweries = @search.run
+    @breweries = @breweries.paginate(:page => params[:page], :per_page => 20)
+    #@breweries = Brewery.order('name ASC').paginate(:page => params[:page], :per_page => 20)
   end
 
   def new

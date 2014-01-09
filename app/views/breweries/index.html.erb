@@ -4,6 +4,10 @@
   <h2 class="clearfix title">Breweries</h2>
   <p class="clearfix meta"></p>
   <div class="entry">
+    <%= simple_form_for @search, :url => breweries_path, :method => :get do |f| %>
+      <%= f.text_field :name, :autofocus => true, :required => false, :label => false %>
+      <%= f.button :submit, "Filter", :class => 'btn-primary' %>
+    <% end %>
     <% if @breweries.count > 0 %>
       <ul>
         <%= render @breweries %>

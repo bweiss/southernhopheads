@@ -1,0 +1,31 @@
+<% provide(:title, "Search") %>
+
+<div class="post">
+  <h2 class="clearfix title">Search</h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <%= form_for @search, :url => '/search' do |f| %>
+      <%= f.label :search %>
+      <%= f.text_field :name %>
+      <%= f.submit %>
+    <% end %>
+
+    <% if @breweries.count > 0 %>
+      <h4>Breweries</h4>
+      <ul>
+        <% @breweries.each do |brewery| %>
+          <li><%= link_to brewery.name, brewery %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <% if @beers.count > 0 %>
+      <h4>Beers</h4>
+      <ul>
+        <% @beers.each do |beer| %>
+          <li><%= link_to beer.name, beer %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

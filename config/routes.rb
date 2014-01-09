@@ -15,6 +15,9 @@ Southernhopheads::Application.routes.draw do
   # calendar
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   
+  #search
+  match '/search', :to => 'search#index'
+
   # users
   devise_scope :user do
     get "signup", :to => "devise/registrations#new"
