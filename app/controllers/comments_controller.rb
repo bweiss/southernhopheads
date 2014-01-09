@@ -72,7 +72,7 @@ class CommentsController < ApplicationController
     end
 
     def find_users_for_comment_notify(commentable)
-      opted_in_users = User.find_users_to_email_new_comments.pluck(:id)
+      opted_in_users = User.wants_emails_about_new_comments.pluck(:id)
       opted_in_users.delete(current_user.id)
       involved_users = Array.new(commentable.user_id) + commentable.comments.pluck(:user_id).uniq
       user_ids = involved_users.select { |x| opted_in_users.include?(x) }

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: articles
+# Table name: events
 #
 #  id             :integer          not null, primary key
 #  title          :string(255)
@@ -8,17 +8,16 @@
 #  user_id        :integer
 #  start_at       :datetime
 #  end_at         :datetime
+#  location       :string(255)
+#  allow_comments :boolean          default(TRUE)
+#  featured       :boolean          default(FALSE)
+#  published      :boolean          default(FALSE)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  allow_comments :boolean
-#  location       :string(255)
-#  event          :boolean
-#  published      :boolean          default(FALSE)
-#  featured       :boolean          default(FALSE)
 #
 
-class Article < ActiveRecord::Base
-  attr_accessible :content, :title, :allow_comments, :start_at, :end_at, :location, :event, :featured
+class Event < ActiveRecord::Base
+  attr_accessible :title, :content, :start_at, :end_at, :location, :allow_comments, :featured
 
   validates :title, :presence => true, :length => { :maximum => 100 }
   validates :content, :presence => true, :length => { :maximum => 3000 }
@@ -27,13 +26,11 @@ class Article < ActiveRecord::Base
   
   belongs_to :user
   has_many :comments, :as => :commentable, :dependent => :destroy
- 
-  scope :published, where(:published => true)
-  scope :not_published, where(:published => false)
-  scope :events, where(:event => true)
-  scope :nonevents, where(:event => false)
+
   scope :featured, where(:featured => true)
   scope :not_featured, where(:featured => false)
+  scope :published, where(:published => true)
+  scope :not_published, where(:published => false)
 
   def self.created_before(time)
     where("created_at < ?", time)

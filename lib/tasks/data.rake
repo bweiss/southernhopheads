@@ -28,4 +28,43 @@ namespace :data do
       end
     end
   end
+
+  desc "Move articles with event flag to new event resource"
+  task :move_articles => :environment do
+    Article.events.each do |article|
+      event = Event.new
+      event.title = article.title
+      event.content = article.content
+      event.start_at = article.start_at
+      event.end_at = article.end_at
+      event.location = article.location
+      event.allow_comments = article.allow_comments
+      event.published = article.published
+      event.featured = true
+      event.user_id = article.user_id
+      event.created_at = article.created_at
+      event.updated_at = article.updated_at
+      if event.save
+        puts "Event #{event.id} saved (article #{article.id})"
+        if article.comments.count > 0
+          puts "Article #{article.id} has #{article.comments.count} comments. Moving..."
+          article.comments.each do |comment|
+            comment.commentable_type = "Event"
+            comment.commentable_id = event.id
+            if comment.save
+              puts "Comment #{comment.id} moved from article #{article.id} to event #{event.id}"
+            else
+              puts "Error moving comment #{comment.id} from article #{article.id} to event #{event.id}"
+            end
+          end
+        else
+          puts "Article #{article.id} has no comments."
+        end
+      else
+        puts "Event not saved (article #{article.id})"
+      end
+      puts "Next article..."
+    end
+    puts "Finished"
+  end
 end

@@ -1,0 +1,12 @@
+<% provide(:title, "Events") %>
+
+<div class="post events-index">
+  <h2 class="clearfix title">Events</h2>
+  <p class="clearfix meta"></p>
+  <div class="entry">
+    <ul>
+      <%= render @events %>
+    </ul>
+    <%= will_paginate %>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<% provide(:title, "Event Queue") %>
+<% postalt = false %>
+
+<div class="alert">
+  <a class="close" data-dismiss="alert">&#215;</a>
+  <div id="flash_notice"><strong>Note:</strong> These events have not yet been published.</div>
+</div>
+
+<% if @events.count > 0 %>
+  <% @events.each do |event| %>
+    <%= postalt == true ? '<div class="post post-alt">'.html_safe : '<div class="post">'.html_safe %>
+      <% postalt = !postalt %>
+      <h2 class="clearfix title"><%= link_to sanitize(event.title), event %></h2>
+      <p class="clearfix meta"><span class="date"><%= event.created_at.strftime("%B %d, %Y") %></span><span class="posted">Posted by <%= link_to User.find(event.user_id).name, user_path(event.user_id) %></span></p>
+      <div class="event-details">
+        <h5>When: <%= event.start_at.strftime("%A, %B %d at %I:%M%p") %> <%= "(noon)" if event.start_at.strftime("%I:%M%p") == "12:00PM" %></h5>
+        <h5>Where: <%= sanitize(event.location) %></h5>
+      </div>
+      <div class="entry">
+        <%=
+          # Show only the summary if summary comment tags are found.
+          if /<!-- summary -->(.+)<!-- summary_end -->/m =~ event.content then
+            sanitize($1, :tags => ALLOWED_TAGS, :attributes => ALLOWED_ATTRIBUTES).html_safe
+          else
+            sanitize(event.content, :tags => ALLOWED_TAGS, :attributes => ALLOWED_ATTRIBUTES).html_safe
+          end
+        %>
+        <p class="links"><%= link_to "Read More", event, :class => 'btn' %><span class="comment-count"><%= link_to("Comments (#{event.comments.count})", event) if event.comments.count > 0 %></span></p>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="post">
+    <div class="entry">
+      <h5>No unpublished events in the queue! \o/</h5>
+    </div>
+  </div>
+<% end %>

@@ -26,7 +26,7 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
-      can :manage, [Article, Beer, Brewery, Comment, Forum, Post, Review, Role, User]
+      can :manage, [Article, Beer, Brewery, Comment, Event, Forum, Post, Review, Role, User]
     end
 
     if user.has_role? :treasurer

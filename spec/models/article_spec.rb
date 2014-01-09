@@ -14,6 +14,7 @@
 #  location       :string(255)
 #  event          :boolean
 #  published      :boolean          default(FALSE)
+#  featured       :boolean          default(FALSE)
 #
 
 require 'spec_helper'

@@ -1,11 +1,3 @@
 <%= f.input :title, :autofocus => true %>
-<hr />
-<%= f.input :event, :label => false, :inline_label => "This is an event. Show on calendar" %>
-<%= f.label 'Start time' %>
-<%= f.datetime_picker 'start_at', :dateFormat => "yy-mm-dd" %>
-<%= f.label 'End time (optional)' %>
-<%= f.datetime_picker 'end_at', :dateFormat => "yy-mm-dd" %>
-<%= f.input :location %>
-<hr />
 <%= f.input :content, :as => :text %>
 <%= f.input :allow_comments, :label => false, :inline_label => 'Allow comments', :input_html => { :checked => true } %>

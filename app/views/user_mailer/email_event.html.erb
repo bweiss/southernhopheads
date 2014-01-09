@@ -4,8 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h3><%= @article.title %></h3>
-    <%= sanitize(@article.content, :tags => ALLOWED_TAGS, :attributes => ALLOWED_ATTRIBUTES).gsub('&lt;!-- summary', '<!-- summary').html_safe %>
+    <h3><%= @event.title %></h3>
+    <h4>When: <%= @event.start_at.strftime("%A, %B %d at %I:%M%p") %> <%= "(noon)" if @event.start_at.strftime("%I:%M%p") == "12:00PM" %></h4>
+    <h4>Where: <%= sanitize(@event.location) %></h4>
+    <%= sanitize(@event.content, :tags => ALLOWED_TAGS, :attributes => ALLOWED_ATTRIBUTES).gsub('&lt;!-- summary', '<!-- summary').html_safe %>
     <br />
     <br />
     <%= link_to '<img src="http://southernhopheads.com/assets/email_logo.jpg" />'.html_safe, root_url %>

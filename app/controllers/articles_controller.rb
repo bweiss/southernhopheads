@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(params[:article])
     @article.user_id = current_user.id
     @article.end_at = @article.start_at if @article.end_at.nil?
+    @article.featured = true
     if @article.save
       flash[:notice] = 'Article created. Thank you!'
       redirect_to @article
@@ -62,7 +63,7 @@ class ArticlesController < ApplicationController
 
   def queue
     authorize! :queue, Article, :message => 'Not authorized to access article queue.'
-    @articles = Article.unpublished.order('updated_at DESC')
+    @articles = Article.not_published.order('updated_at DESC')
   end
 
   def publish
@@ -74,13 +75,13 @@ class ArticlesController < ApplicationController
     else
       flash[:error] = 'There was an error publishing this article.'
     end
-    redirect_to queue_path
+    redirect_to article_queue_path
   end
 
   def email
     @article = Article.find(params[:id])
     authorize! :email, @article, :message => 'Not authorized to email this article.'
-    @recipients = User.find_users_to_email_new_events
+    @recipients = User.wants_emails_about_articles
     if @article.valid? and !@recipients.empty?
       @recipients.each do |u|
         UserMailer.email_article(u, @article).deliver
