@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [ :admin ]
 
   def index
-    @articles_and_events = find_featured_articles_and_events(:order => "updated_at DESC", :limit => 6)
+    @articles_and_events = find_featured_articles_and_events(:order => "created_at DESC", :limit => 6)
   end
 
   def about
