@@ -6,6 +6,11 @@ class HomeController < ApplicationController
   end
 
   def about
+    @president = User.find(31) # justin 31
+    @vp = User.find(11) # josh 11
+    @secretary = User.find(23) # z 23
+    @treasurer = User.find(2) # hunter 2
+    @webmaster = User.find(3) # brian 3
   end
   
   def admin

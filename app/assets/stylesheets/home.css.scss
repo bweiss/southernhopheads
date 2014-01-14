@@ -1,8 +1,29 @@
 /* about */
 
+#about-page em {
+  font-style: normal;
+  text-decoration: underline;
+}
+
 #about-us img {
+  padding: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#about-officers img {
   float: left;
-  padding: 0px 26px 16px 0px;
+  padding-right: 10px;
+}
+
+#about-officers table {
+  width: 100%;
+  font-weight: bold;
+}
+
+#about-officers td.spaceUnder {
+  padding-bottom: 30px;
 }
 
 /* brewinfo */

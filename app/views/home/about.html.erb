@@ -1,13 +1,80 @@
 <% provide(:title, "About Us") %>
 
-<div id="about-us" class="post">
-  <h2 class="clearfix title">Welcome to Southern HopHeads</h2>
-  <p class="clearfix meta"></p>
-  <div class="entry">
-    <%= image_tag('fresh_hops_pint_glass_200x200.png') %>
-    <p>You’ve reached the homepage for the Southern HopHeads! We're a new homebrew club based in Southern Pines, North Carolina.</p>
-    <p>Over the past several years, we have watched the craft beer market and the interest in homebrewing explode in this area. Being as the nearest club is in the Fayetteville area, we decided to start our own. Our goal is to create a community for other homebrewers to get together, share ideas, advice and, of course, great beer.</p>
-    <p>Currently we are in the early stages of forming and are looking to find others who share our passion for beer. If this sounds like you, please have a look through the site and feel free to sign up to receive announcements of events and beer related happenings. The club will also begin to meet occasionally to taste beer and talk brewing.</p>
-    <p>And remember… Don’t worry, relax, have a homebrew!</p>
+<div id="about-page">
+
+  <div id="about-us" class="post">
+    <h2 class="clearfix title">About The Southern HopHeads</h2>
+    <p class="clearfix meta"></p>
+    <div class="entry">
+      <p><strong>You’ve reached the homepage for the Southern HopHeads! We're a homebrew club based in Southern Pines, North Carolina.</strong></p>
+      <p><%= image_tag('winter_public_pour_2013-group.jpg') %></p>
+      <p>Over the past several years, we have watched the craft beer market and the interest in homebrewing explode in this area. Being as the nearest club is in Fayetteville, we decided to start our own. Our goal is to create a community for other homebrewers to get together, share ideas, advice and, of course, great beer.</p>
+      <p>If you’re looking to find others who share your passion for beer and brewing then you’ve come to the right place! Please have a look through the site and feel free to sign up to receive announcements and participate in the forums. The club has regular events and meetings so don’t forget to check the calendar!</p>
+      <p><strong>And remember… Don’t worry, relax, have a homebrew!</strong></p>  
+    </div>
   </div>
+
+  <div id="about-officers" class="post post-alt">
+    <h2 class="clearfix title">Club Officers</h2>
+    <p class="clearfix meta"></p>
+    <div class="entry">
+      <table>
+        <tr>
+          <td class="spaceUnder">
+            <%= gravatar_for @president, :size => 60 %>
+            President<br />
+            <%= link_to @president.name, @president %>
+          </td>
+          <td class="spaceUnder">
+            <%= gravatar_for @vp, :size => 60 %>
+            Vice President<br />
+            <%= link_to @vp.name, @vp %>
+          </td>
+        </tr>
+        <tr>
+          <td class="spaceUnder">
+            <%= gravatar_for @secretary, :size => 60 %>
+            Secretary<br />
+            <%= link_to @secretary.name, @secretary %>
+          </td>
+          <td class="spaceUnder">
+            <%= gravatar_for @treasurer, :size => 60 %>
+            Treasurer<br />
+            <%= link_to @treasurer.name, @treasurer %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= gravatar_for @webmaster, :size => 60 %>
+            Webmaster<br />
+            <%= link_to @webmaster.name, @webmaster %>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="about-constitution" class="post">
+    <h2 class="clearfix title">Constitution</h2>
+    <p class="clearfix meta"></p>
+    <div class="entry">
+      <p><strong><em>Article 1</em></strong></p>
+      <p><strong>Section 1: Name</strong></p>
+      <p>The official club name of this homebrewers association is "Southern Hopheads"</p>
+      <p><strong>Section 2: Purpose</strong></p>
+      <p>
+        <ul>
+          <li>To create a community of like-minded enthusiasts</li>
+          <li>To encourage and accept fellow homebrewers in the community</li>
+          <li>To advance our knowledge of beer and brewing</li>
+          <li>To have fun!</li>
+        </ul>
+      </p>
+      <p><strong>Section 3: Membership</strong></p>
+      <p><strong>Section 4: Headquarters</strong></p>
+      <p>Currently, most of our meetings are held at Triangle Wine Company in Southern Pines but events are occasionally held at other local establishments.</p>
+    </div>
+  </div>
+
 </div>
