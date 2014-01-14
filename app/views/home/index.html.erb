@@ -35,8 +35,8 @@
             end
           %>
         </p>
-        <% comment_count = Comment.find_all_by_commentable_id(ae[:id]).count %>
-        <p class="links"><%= link_to "Read More", "#{ae[:type]}s/#{ae[:id]}", :class => 'btn' %><span class="comment-count"><%= link_to("Comments (#{comment_count})", "#{ae[:type]}s/#{ae[:id]}") if comment_count > 0 %></span></p>
+        <% #comment_count = Comment.find_all_by_commentable_id(ae[:id]).count %>
+        <p class="links"><%= link_to "Read More", "#{ae[:type]}s/#{ae[:id]}", :class => 'btn' %><!-- <span class="comment-count"><%= link_to("Comments (#{comment_count})", "#{ae[:type]}s/#{ae[:id]}") if comment_count > 0 %></span> --></p>
       </div>
     </div>
   <% end %>
