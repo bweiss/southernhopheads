@@ -457,22 +457,12 @@ textarea {
 	text-decoration: underline;
 }
 
-#badges {
-  padding-bottom: 40px;
+#twitter {
+	padding-top: 10px;
+	padding-bottom: 40px;
 }
 
-#badges a {
-  padding: 0;
-  margin: 0;
-}
-
-#badges img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#socialmedia {
+#socialmedia-icons {
   border-top: 1px solid #377900;
   border-bottom: 1px solid #377900;
   padding-top: 10px;
@@ -481,7 +471,7 @@ textarea {
   text-align: center;
 }
 
-#socialmedia a {
+#socialmedia-icons a {
 	padding: 0 2px 0 2px;
 }
 
