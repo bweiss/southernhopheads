@@ -6,11 +6,12 @@
     <h2 class="clearfix title">About The Southern HopHeads</h2>
     <p class="clearfix meta"></p>
     <div class="entry">
-      <p><strong>You’ve reached the homepage for the Southern HopHeads! We're a homebrew club based in Southern Pines, North Carolina.</strong></p>
-      <p><%= image_tag('winter_public_pour_2013-group.jpg') %></p>
+      <p><strong>You've reached the homepage for the Southern HopHeads! We're a homebrew club based in Southern Pines, North Carolina.</strong></p>
+      <%= image_tag('winter_public_pour_2013-group.jpg') %>
+      <span class="caption">"Cheers!"</span>
       <p>Over the past several years, we have watched the craft beer market and the interest in homebrewing explode in this area. Being as the nearest club is in Fayetteville, we decided to start our own. Our goal is to create a community for other homebrewers to get together, share ideas, advice and, of course, great beer.</p>
-      <p>If you’re looking to find others who share your passion for beer and brewing then you’ve come to the right place! Please have a look through the site and feel free to sign up to receive announcements and participate in the forums. The club has regular events and meetings so don’t forget to check the calendar!</p>
-      <p><strong>And remember… Don’t worry, relax, have a homebrew!</strong></p>  
+      <p>If you're looking to find others who share your passion for beer and brewing then you've come to the right place! Please have a look through the site and feel free to sign up to receive announcements and participate in the forums. The club has regular events and meetings so don't forget to check the calendar!</p>
+      <p><strong>And remember… Don't worry, relax, have a homebrew!</strong></p>  
     </div>
   </div>
 
@@ -23,31 +24,31 @@
           <td class="spaceUnder">
             <%= gravatar_for @president, :size => 60 %>
             President<br />
-            <%= link_to @president.name, @president %>
+            <%= link_to "Justin S.", @president %>
           </td>
           <td class="spaceUnder">
             <%= gravatar_for @vp, :size => 60 %>
             Vice President<br />
-            <%= link_to @vp.name, @vp %>
+            <%= link_to "Josh K.", @vp %>
           </td>
         </tr>
         <tr>
           <td class="spaceUnder">
             <%= gravatar_for @secretary, :size => 60 %>
             Secretary<br />
-            <%= link_to @secretary.name, @secretary %>
+            <%= link_to "Brian Z", @secretary %>
           </td>
           <td class="spaceUnder">
             <%= gravatar_for @treasurer, :size => 60 %>
             Treasurer<br />
-            <%= link_to @treasurer.name, @treasurer %>
+            <%= link_to "Hunter M.", @treasurer %>
           </td>
         </tr>
         <tr>
           <td>
             <%= gravatar_for @webmaster, :size => 60 %>
             Webmaster<br />
-            <%= link_to @webmaster.name, @webmaster %>
+            <%= link_to "Brian W.", @webmaster %>
           </td>
           <td></td>
         </tr>
