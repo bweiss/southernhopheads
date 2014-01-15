@@ -35,7 +35,7 @@
         <% @upcoming_events.each do |e| %>
           <li>
             <div class="upcoming-event-date"><%= e.start_at.strftime('%-m/%-d') %></div>
-            <div class="upcoming-event-desc"><%= link_to e.title, e %></div>
+            <div class="upcoming-event-desc"><%= link_to truncate(strip_tags(e.title), :length => 40, :omission => '...'), e %></div>
           </li>
         <% end %>
       </ul>
@@ -45,7 +45,7 @@
     <h2>Latest Forum Posts</h2>
     <ul>
       <% @latest_posts.each do |p| %>
-        <li><span class="pull-left"><%= link_to truncate(strip_tags(p.title), :length => 35, :omission => '... (more)'), p %></span><span class="pull-right"><small>by <%= link_to truncate(p.user.name, :length => 10), p.user %></small></span></li>
+        <li><span class="pull-left"><%= link_to truncate(strip_tags(p.title), :length => 34, :omission => '...'), p %></span><span class="pull-right"><small>by <%= link_to truncate(p.user.name, :length => 10), p.user %></small></span></li>
       <% end %>
     </ul>
   </li>
