@@ -42,7 +42,7 @@
     </li>
   <% end %>
   <li>
-    <h2>Latest Forum Posts</h2>
+    <h2>Active Forum Posts</h2>
     <ul>
       <% @latest_posts.each do |p| %>
         <li><span class="pull-left"><%= link_to truncate(strip_tags(p.title), :length => 34, :omission => '...'), p %></span><span class="pull-right"><small>by <%= link_to truncate(p.user.name, :length => 10), p.user %></small></span></li>

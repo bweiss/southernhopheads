@@ -12,17 +12,24 @@
       <% end %>
     </div>
   </h2>
-  <h5 class="clearfix meta"><span class="date"><%= gravatar_for(@post.user, :size => 26)%> <strong><%= link_to @post.user.name, @post.user %></strong> <small>on <%= @post.created_at.strftime("%B %d, %Y") %></small></span></h5>
+  <h5 class="clearfix meta">
+    <span class="date"><%= gravatar_for(@post.user, :size => 26)%> <strong><%= link_to @post.user.name, @post.user %></strong> <small>on <%= @post.created_at.strftime("%B %d, %Y") %></small></span>
+    <span class="posted"><small>Posted under <%= link_to @post.forum.name, @post.forum %></small></span>
+  </h5>
   <div class="entry">
     <%= RedCloth.new(strip_tags(@post.content)).to_html.html_safe %>
-    <p class="links"><%= link_to "Back To Forum", @post.forum, :class => 'btn' %></p>
+    <p class="links"><%= link_to "Back", @post.forum, :class => 'btn' %></p>
   </div>
 </div>
 
 <div id="comments">
   <div class="post post-alt">
     <h2 class="clearfix title">Comments</h2>
-    <p class="clearfix meta"></p>
+    <p class="clearfix meta">
+      <% if @comments.size > 0 %>
+        <span class="date"><%= will_paginate @comments %></span>
+      <% end %>
+    </p>
     <div class="entry">
       <% if @comments.size > 0 %>
         <%= render @comments %>

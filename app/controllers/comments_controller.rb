@@ -19,6 +19,11 @@ class CommentsController < ApplicationController
           end
         end
         flash[:notice] = "Successfully saved comment."
+        # update updated_at on forum posts in order to bump them on the sidebar
+        if @commentable.class.name == "Post"
+          @commentable.updated_at = Time.zone.now
+          @commentable.save
+        end
         redirect_to @commentable
       else
         render :action => 'new'
