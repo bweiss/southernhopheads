@@ -38,7 +38,8 @@ Southernhopheads::Application.routes.draw do
   # articles
   get '/articles/queue', :to => 'articles#queue', :as => :article_queue
   match '/articles/:id/publish' => 'articles#publish', :as => :publish_article
-  match '/articles/:id/email' => 'articles#email', :as => :email_article
+  match '/articles/:id/email'   => 'articles#email',   :as => :email_article
+  match '/articles/:id/bump'    => 'articles#bump',    :as => :bump_article
   resources :articles, :shallow => true do
     resources :comments
   end
@@ -46,7 +47,8 @@ Southernhopheads::Application.routes.draw do
   # events
   get '/events/queue', :to => 'events#queue', :as => :event_queue
   match '/events/:id/publish' => 'events#publish', :as => :publish_event
-  match '/events/:id/email' => 'events#email', :as => :email_event
+  match '/events/:id/email'   => 'events#email',   :as => :email_event
+  match 'events/:id/bump'     => 'events#bump',    :as => :bump_event
   resources :events, :shallow => true do
     resources :comments
   end

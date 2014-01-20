@@ -14,6 +14,9 @@
     <h2 class="clearfix title">
       <%= link_to sanitize(@event.title), @event %>
       <div class="admin-controls pull-right">
+        <% if can? :bump, @event %>
+          <%= link_to '<i class="icon-circle-arrow-up"></i>'.html_safe, bump_event_path(@event.id), :data => { :confirm => "Are you sure you want to bump this event?" } %>
+        <% end %>
         <% if can? :email, @event %>
           <%= link_to '<i class="icon-envelope"></i>'.html_safe, email_event_path(@event.id), :data => { :confirm => "Are you sure you want to email this event to users that have opted-in?" } %>
         <% end %>

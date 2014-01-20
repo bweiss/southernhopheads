@@ -92,4 +92,16 @@ class EventsController < ApplicationController
       redirect_to @event
     end
   end
+
+  def bump
+    @event = Event.find(params[:id])
+    authorize! :bump, @event, :message => 'Not authorized to bump this event.'
+    @event.created_at = Time.zone.now
+    if @event.save
+      flash[:notice] = 'Event creation date has been bumped.'
+    else
+      flash[:error] = 'Error. Unable to save event.'
+    end
+    redirect_to @event
+  end
 end

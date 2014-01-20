@@ -93,4 +93,16 @@ class ArticlesController < ApplicationController
       redirect_to @article
     end
   end
+
+  def bump
+    @article = Article.find(params[:id])
+    authorize! :bump, @article, :message => 'Not authorized to bump this article.'
+    @article.created_at = Time.zone.now
+    if @article.save
+      flash[:notice] = 'Article creation date has been bumped.'
+    else
+      flash[:error] = 'Error. Unable to save article.'
+    end
+    redirect_to @article
+  end
 end
