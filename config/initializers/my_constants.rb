@@ -1,5 +1,5 @@
-ALLOWED_TAGS = ["h1", "h2", "h3", "h4", "h5", "p", "i", "b", "u", "em", "strong", "img", "a", "br", "table", "tr", "td", "dl", "dt", "dd", "span", "div", "ul", "ol", "li"]
-ALLOWED_ATTRIBUTES = ["id", "class", "style", "target", "src", "href"]
+ALLOWED_TAGS = ["h1", "h2", "h3", "h4", "h5", "p", "i", "b", "u", "em", "strong", "img", "a", "br", "table", "tr", "td", "dl", "dt", "dd", "span", "div", "ul", "ol", "li", "iframe"]
+ALLOWED_ATTRIBUTES = ["id", "class", "style", "target", "src", "href", "height", "width"]
 
 BEER_QUOTES = [
   { :text => "Beer is proof that God loves us and wants us to be happy.", :author => "Benjamin Franklin" },
