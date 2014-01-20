@@ -17,5 +17,5 @@ class Forum < ActiveRecord::Base
   validates :description, :presence => true, :length => { :maximum => 300 }
   validates :sort_value,  :presence => true
 
-  has_many :posts, :dependent => :destroy
+  has_many :posts
 end
