@@ -44,8 +44,13 @@
   <li>
     <h2>Active Forum Posts</h2>
     <ul>
-      <% @latest_posts.each do |p| %>
-        <li><span class="pull-left"><%= link_to truncate(strip_tags(p.title), :length => 34, :omission => '...'), p %></span><span class="pull-right"><small>by <%= link_to truncate(p.user.name, :length => 10), p.user %></small></span></li>
+      <% @latest_posts.each do |post| %>
+        <% if post.comments.count > 0 %>
+          <% user = post.comments.last.user %>
+        <% else %>
+          <% user = post.user %>
+        <% end %>
+        <li><span class="pull-left"><%= link_to truncate(strip_tags(post.title), :length => 34, :omission => '...'), post %></span><span class="pull-right"><small>by <%= link_to truncate(user.name, :length => 10), user %></small></span></li>
       <% end %>
     </ul>
   </li>
