@@ -1,3 +1,19 @@
+<% 
+# XXX - This doesn't really belong in the view but whatever
+article_queue_link_str = "Article Queue"
+event_queue_link_str = "Event Queue"
+if user_signed_in? and current_user.has_role? :admin
+  unpublished_article_count = Article.not_published.count
+  unpublished_event_count = Event.not_published.count
+  if unpublished_article_count > 0
+    article_queue_link_str += " <span class=\"badge\">#{unpublished_article_count}</span>"
+  end
+  if unpublished_event_count > 0
+    event_queue_link_str += " <span class=\"badge\">#{unpublished_event_count}</span>"
+  end
+end
+%>
+
 <nav>
   <ul class="nav pull-left">
     <li><%= link_to "Home", root_path %></li>
@@ -15,8 +31,10 @@
         <ul class="dropdown-menu">
           <li><%= link_to "Admin Dashboard", admin_path %></li>
           <li><%= link_to "User Management", users_path %></li>
-          <li><%= link_to "Article Queue", article_queue_path %></li>
-          <li><%= link_to "Event Queue", event_queue_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to article_queue_link_str.html_safe, article_queue_path %></li>
+          <li><%= link_to event_queue_link_str.html_safe, event_queue_path %></li>
+          <li class="divider"></li>
           <li><%= link_to "New Article", new_article_path %></li>
           <li><%= link_to "New Event", new_event_path %></li>
         </ul>
