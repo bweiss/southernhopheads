@@ -1,11 +1,20 @@
 <% provide(:title, "Events") %>
 
-<div class="post events-index">
+<div id="events-index" class="post">
   <h2 class="clearfix title">Events</h2>
   <p class="clearfix meta"></p>
   <div class="entry">
     <ul>
-      <%= render @events %>
+      <% alt = false %>
+      <% @events.each do |event| %>
+        <%= alt == true ? '<li class="alt">'.html_safe : '<li>'.html_safe %>
+          <% alt = !alt %>
+          <span class="events-index-title"><%= link_to event.title, event %></span>
+          <br />
+          <span class="events-index-user">posted by <%= link_to event.user.name, event.user %></span>
+          <span class="events-index-date"><%= event.created_at.strftime("%B %d, %Y") %></span>
+        </li>
+      <% end %>
     </ul>
     <%= will_paginate %>
   </div>

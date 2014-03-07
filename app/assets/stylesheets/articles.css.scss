@@ -1,34 +1,41 @@
-.articles-index ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 30px 0;
-  border-bottom: 1px solid gray;
-}
+#articles-index {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 30px 0;
+    border-bottom: 1px solid #DDDDDD;
+  }
 
-.articles-index li {
-  border-top: 1px solid gray;
-  padding: 10px 0;
-}
+  li {
+    border-top: 1px solid #DDDDDD;
+    padding: 10px 0;
+    background-color: white;
+  }
 
-.articles-index-title {
-  font-weight: bold;
-  font-size: 1.2em;
-}
+  li.alt {
+    background-color: #F0F0F0;
+  }
 
-.articles-index-title .label {
-  font-weight: normal;
-  font-size: 0.6em;
-  background-color: #BDBCBC;
-  color: white;
-}
+  .articles-index-title {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
 
-.articles-index-user {
-  font-weight: normal;
-  font-size: 1em;
-}
+  .articles-index-title .label {
+    font-weight: normal;
+    font-size: 0.6em;
+    background-color: #BDBCBC;
+    color: white;
+  }
 
-.articles-index-date {
-  float: right;
-  font-weight: normal;
-  font-size: 1em;
+  .articles-index-user {
+    font-weight: normal;
+    font-size: 1em;
+  }
+
+  .articles-index-date {
+    float: right;
+    font-weight: normal;
+    font-size: 1em;
+  }
 }
